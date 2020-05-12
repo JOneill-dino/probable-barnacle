@@ -1,0 +1,68 @@
+import pandas as pd
+
+
+import censusdata
+
+pd.set_option('display.expand_frame_repr', False)
+pd.set_option('display.precision', 1)
+
+censusdata.censusgeo(['state', '50'])
+#censusdata.censustable('acs1', 2018, 'B18101')
+
+
+index_var = censusdata.censustable('acs1', 2018, 'B18101')
+
+#Need to figure out how to grab all the variables
+index_var = censusdata.printtable(censusdata.censustable('acs1', 2018, 'B18101'))
+
+#Create CSV for Variables# - Populates CSV with table num/label/concept/predicate
+
+df = pd.DataFrame(index_var)
+#print(df)
+df.to_csv(r'C:\Users\James\anaconda3\Index_variables.csv')
+
+
+
+###########df = pd.DataFrame(index_var, columns= ['Concept','Label','Predicate'])
+############df.to_csv(r'C:\Users\James\anaconda3\Index_variables.csv')
+
+
+table_li = "B18101_001E,B18101_002E,B18101_003E,B18101_004E,B18101_005E,B18101_006E,B18101_007E,B18101_008E,B18101_009E,B18101_010E,B18101_011E,B18101_012E,B18101_013E,B18101_014E,B18101_015E,B18101_016E,B18101_017E,B18101_018E,B18101_019E,B18101_020E,B18101_021E,B18101_022E,B18101_023E,B18101_024E,B18101_025E,B18101_026E,B18101_027E,B18101_028E,B18101_029E,B18101_030E,B18101_031E,B18101_032E,B18101_033E,B18101_034E,B18101_035E,B18101_036E,B18101_037E,B18101_038E,B18101_039E"
+table_li.split("_")
+
+###Prompt###
+
+print('Enter the year')
+year = int(input("Year :    "))
+
+print('Enter the year range. (acs- 1,3,5)')
+year_range = input('The range is:   ')
+
+
+
+
+#print('Enter the table number')
+#table_number = input('Table number:  ')
+
+
+
+
+#census_var1 = censusdata.download(year_range, year,
+                             censusdata.censusgeo([('state', '50')]),
+                             [table_li])
+
+
+
+#CreateCSV for results##
+
+df = pd.DataFrame(census_var1)
+
+print (df)
+
+#df.to_csv(r'C:\Users\James\anaconda3\Testing_file.csv')
+print(census_var1)
+
+##Test
+#censusdata.download('acs1', 2018,
+ #                            censusdata.censusgeo([('state', '50')]),
+  #                           [table_li])
